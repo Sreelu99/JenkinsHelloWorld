@@ -1,21 +1,26 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+	agent any
+	environment
+    {
+        BUILD_TYPE = "test"
     }
+    parameters
+    {
+        choice(name: "Testing",choices: ["false","true"],description: "Select the Tests to be executed or Not")
+        string(name: "Version", defaultValue: "latest",description: "Specifiy the version of the application")
+        booleanParam(name: 'ElementAccess', defaultValue: false, description: 'Only run tests from the ElementAccess Category.')
+
+    }
+	stages {
+		stage ('Prepare Env') {
+			steps {
+				echo 'Preparing Environment'
+			}
+		}
+		stage ('Building') {
+			steps {
+				echo 'Building the application'
+			}
+		}
+	}
 }
