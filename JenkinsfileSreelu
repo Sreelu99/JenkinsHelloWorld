@@ -14,7 +14,7 @@ pipeline {
 	stages {
 		stage ('Prepare Env') {
 			steps {
-				echo 'Preparingtrsfsr Environment'
+				echo 'Preparingtrsfsr gdzgdzgEnvironment'
 			}
 		}
 		stage ('Building') {
